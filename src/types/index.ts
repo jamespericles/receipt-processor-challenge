@@ -1,9 +1,9 @@
-type Item = {
+export type Item = {
   shortDescription: string
   price: string // $0.00
 }
 
-type Receipt = {
+export type Receipt = {
   retailer: string
   purchaseDate: string // YYYY-MM-DD
   purchaseTime: string // HH:MM (24-hour)

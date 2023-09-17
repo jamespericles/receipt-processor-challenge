@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
 import { v4 } from 'uuid'
-import { generatePoints } from '../util'
+import { generatePoints } from '../utils'
+import { Receipt } from '../types'
 
 const receipts: Record<string, Receipt> = {}
 

@@ -1,3 +1,5 @@
+import { Receipt, Item } from '../../types'
+
 const generatePoints = (receipt: Receipt): number => {
   let points: number = 0
 
@@ -29,11 +31,12 @@ const generatePoints = (receipt: Receipt): number => {
   })
 
   // 6 points if the day in the purchase data is odd
-  const date = new Date(receipt.purchaseDate)
-  const startOfYear = new Date(date.getFullYear(), 0, 0)
-  const diff = date.getTime() - startOfYear.getTime()
-  const dayOfYear = Math.floor(diff / (1000 * 60 * 60 * 24))
-  if (dayOfYear % 2 !== 0) {
+  const rawDate = receipt.purchaseDate.split('-').map(Number)
+  // Date.UTC() expects the month to be 0-indexed
+  const day = new Date(
+    Date.UTC(rawDate[0], rawDate[1] - 1, rawDate[2])
+  ).getUTCDate()
+  if (day % 2 === 1) {
     points += 6
   }
 
